@@ -267,7 +267,7 @@ const About = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + (i * 0.1) }}
-                    className="px-4 md:px-5 py-2 md:py-2.5 bg-[rgba(200,241,53,0.08)] border border-[var(--lime)] text-[var(--lime)] text-xs md:text-sm font-semibold rounded-full tracking-wider uppercase transition-all duration-300 hover:bg-[rgba(200,241,53,0.15)] hover:shadow-[0_0_12px_rgba(200,241,53,0.2)]"
+                    className="px-4 md:px-5 py-2 md:py-2.5 bg-[rgba(200,241,53,0.08)] border-[1.5px] border-[var(--lime)] text-[var(--lime)] text-xs md:text-sm font-semibold rounded-full tracking-wider uppercase transition-all duration-300 hover:bg-[rgba(200,241,53,0.15)] hover:shadow-[0_0_12px_rgba(200,241,53,0.2)]"
                   >
                     {role}
                   </motion.span>
