@@ -320,7 +320,7 @@ const Hero = () => {
                   fontSize: '11px',
                   letterSpacing: '2px',
                   textTransform: 'uppercase',
-                  color: 'var(--cream-muted)',
+                  color: 'var(--cream)',
                   padding: '6px 12px',
                   border: '1px solid var(--gray)',
                   borderRadius: '4px',

@@ -59,7 +59,7 @@ const About = () => {
         scale={1.2} 
       />
 
-      <div className="container relative z-10 flex flex-col gap-20 md:gap-48">
+      <div className="container relative z-10 flex flex-col gap-24 md:gap-48">
 
         {/* --- BLOCK 1: THE PERSON --- */}
         <div className="flex flex-col md:grid md:grid-cols-[60%_1fr] gap-10 md:gap-24 items-start">
@@ -134,9 +134,9 @@ const About = () => {
                     ) 
                   },
                 ].map((row, idx, arr) => (
-                  <div key={row.label} className={`flex justify-between items-center pb-4 md:pb-5 ${idx !== arr.length - 1 ? 'border-b border-[var(--gray-2)]' : 'pb-0'}`}>
-                    <span className="text-sm text-[var(--cream-muted)]">{row.label}</span>
-                    <span className="text-sm md:text-base text-[var(--cream)] font-medium text-right flex items-center">{row.value}</span>
+                  <div key={row.label} className={`flex flex-col sm:flex-row justify-between sm:items-center gap-1 sm:gap-0 pb-4 md:pb-5 ${idx !== arr.length - 1 ? 'border-b border-[var(--gray-2)]' : 'pb-0'}`}>
+                    <span className="text-[10px] md:text-sm uppercase tracking-wider text-[var(--cream-muted)]">{row.label}</span>
+                    <span className="text-sm md:text-base text-[var(--cream)] font-medium text-left sm:text-right flex items-center">{row.value}</span>
                   </div>
                 ))}
               </div>
@@ -184,40 +184,40 @@ const About = () => {
         </div>
 
         {/* --- BLOCK 2: WHAT MAKES ME DIFFERENT --- */}
-        <div className="w-full flex flex-col items-center text-center">
+        <div className="w-full flex flex-col items-center text-center gap-16 md:gap-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-10 md:mb-20 flex flex-col justify-center items-center"
+            className="md:mb-20 flex flex-col justify-center items-center"
           >
             <span className="inline-block text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold mb-4 md:mb-6">
               Why me?
             </span>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-[-1px] md:tracking-[-1.5px] text-[var(--cream)]">
+            <h2 className="font-display text-2xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-[-1px] md:tracking-[-1.5px] text-[var(--cream)]">
               One person.<br />
-              <span style={{ WebkitTextStroke: '2px var(--lime)', color: 'transparent' }}>
+              <span style={{ WebkitTextStroke: '1.5px var(--lime)', color: 'transparent' }}>
                 Full package.
               </span>
             </h2>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full text-left">
+ 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 w-full text-left sm:mt-0">
             {diffCards.map((card, i) => (
               <motion.div
                 key={card.id}
                 initial={{ opacity: 0, y: 40 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 + (i * 0.15) }}
-                className="relative bg-[var(--black-2)] p-7 md:p-12 overflow-hidden group border border-transparent hover:border-[rgba(200,241,53,0.5)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(200,241,53,0.05)]"
+                className="relative bg-[var(--black-2)] p-6 sm:p-7 md:p-12 overflow-hidden group border border-transparent hover:border-[rgba(200,241,53,0.5)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(200,241,53,0.05)]"
               >
-                <span className="absolute -top-4 -right-2 text-9xl font-display font-extrabold text-transparent opacity-5 transition-colors duration-300 group-hover:text-[var(--lime)] group-hover:opacity-10" style={{ WebkitTextStroke: '2px var(--cream-muted)', pointerEvents: 'none' }}>
+                <span className="absolute -top-6 -right-2 text-7xl sm:text-9xl font-display font-extrabold text-transparent opacity-5 transition-colors duration-300 group-hover:text-[var(--lime)] group-hover:opacity-10" style={{ WebkitTextStroke: '1.5px var(--cream-muted)', pointerEvents: 'none' }}>
                   {card.id}
                 </span>
-                <h3 className="relative z-10 font-display text-xl md:text-2xl font-bold text-[var(--cream)] mb-3 md:mb-4">
+                <h3 className="relative z-10 font-display text-lg md:text-2xl font-bold text-[var(--cream)] mb-2 md:mb-4">
                   {card.title}
                 </h3>
-                <p className="relative z-10 text-[var(--cream-muted)] text-sm md:text-[15px] leading-relaxed font-light">
+                <p className="relative z-10 text-[var(--cream-muted)] text-[13px] md:text-[15px] leading-relaxed font-light">
                   {card.desc}
                 </p>
               </motion.div>
@@ -244,7 +244,7 @@ const About = () => {
             <div className="w-[3px] bg-[var(--lime)] flex-shrink-0" />
             
             <div className="flex flex-col py-2">
-              <span className="flex items-center gap-3 md:gap-4 text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold mb-5 md:mb-6">
+              <span className="flex items-center gap-3 md:gap-4 text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold mb-8 md:mb-6">
                 <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center border border-[rgba(200,241,53,0.3)] shadow-[0_0_15px_rgba(200,241,53,0.2)]">
                   <div className="absolute w-2 h-2 rounded-full bg-[var(--lime)] animate-[ping_2s_ease-in-out_infinite]" />
                   <div className="w-2 h-2 rounded-full bg-[var(--lime)]" />
@@ -252,7 +252,7 @@ const About = () => {
                 OMNICRAFT
               </span>
               
-              <h2 className="font-display italic text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-1px] text-[var(--cream)] mb-6 md:mb-8">
+              <h2 className="font-display italic text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-0.5px] md:tracking-[-1px] text-[var(--cream)] mb-6 md:mb-8">
                 A worldwide creative agency.
               </h2>
               
@@ -285,7 +285,7 @@ const About = () => {
              initial={{ opacity: 0, y: 20 }}
              animate={inView ? { opacity: 1, y: 0 } : {}}
              transition={{ duration: 0.6, delay: 0.3 }}
-             className="font-display text-3xl md:text-5xl font-bold text-[var(--cream)] mb-8 md:mb-12"
+             className="font-display text-3xl md:text-5xl font-bold text-[var(--cream)] mb-12 md:mb-12"
           >
             What I Do
           </motion.h3>
@@ -298,16 +298,16 @@ const About = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
-                  className="relative p-7 md:p-10 rounded-2xl bg-[var(--black-2)] border border-[var(--gray-2)] overflow-hidden group transition-colors duration-300 hover:border-[var(--lime)]"
+                  className="relative p-8 md:p-10 rounded-2xl bg-[var(--black-2)] border border-[var(--gray-2)] overflow-hidden group transition-colors duration-300 hover:border-[var(--lime)]"
                 >
                   <span className="absolute -top-4 -right-2 text-8xl font-display font-extrabold text-transparent opacity-10 transition-colors group-hover:text-[var(--lime)]" style={{ WebkitTextStroke: '1px var(--cream-muted)', pointerEvents: 'none' }}>
                     {service.id}
                   </span>
                   
-                  <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center text-[var(--lime)] mb-5 md:mb-6">
+                  <div className="relative z-10 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center text-[var(--lime)] mb-5 md:mb-6">
                     <Icon size={22} />
                   </div>
-                  <h4 className="font-display text-lg md:text-xl font-bold text-[var(--cream)] mb-2 md:mb-3">
+                  <h4 className="relative z-10 font-display text-lg md:text-xl font-bold text-[var(--cream)] mb-2 md:mb-3">
                     {service.title}
                   </h4>
                   <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
@@ -319,68 +319,79 @@ const About = () => {
           </div>
         </div>
 
-        {/* Process - How I Work */}
-        <div className="mt-8 md:mt-12">
-          <motion.h3
-             initial={{ opacity: 0, y: 20 }}
-             animate={inView ? { opacity: 1, y: 0 } : {}}
-             transition={{ duration: 0.6, delay: 0.4 }}
-             className="font-display text-3xl md:text-5xl font-bold text-[var(--cream)] mb-10 md:mb-16"
-          >
-            My Process
-          </motion.h3>
+        {/* --- BLOCK 5: PROCESS --- */}
+        <div className="relative pt-8 md:pt-0">
+          {/* Desktop: horizontal timeline */}
+          <div className="hidden md:block">
+            <motion.h3
+               initial={{ opacity: 0, y: 20 }}
+               animate={inView ? { opacity: 1, y: 0 } : {}}
+               transition={{ duration: 0.6, delay: 0.4 }}
+               className="font-display text-5xl font-bold text-[var(--cream)] mb-16"
+            >
+              My Process
+            </motion.h3>
+            <div className="relative">
+              <div className="absolute left-0 top-6 w-full h-[2px] border-t-2 border-dotted border-[var(--lime)] opacity-30 z-0" />
+              <div className="flex flex-row justify-between gap-6 relative z-10">
+                {processSteps.map((step, i) => (
+                  <motion.div
+                    key={step.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.5 + i * 0.15 }}
+                    className="flex flex-col items-center text-center w-1/4"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-[var(--black)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg mb-6 shadow-[0_0_15px_rgba(200,241,53,0.2)]">
+                      {step.id}
+                    </div>
+                    <div>
+                      <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-2">
+                        {step.title}
+                      </h4>
+                      <p className="text-[var(--cream-muted)] text-[13px] leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-          {/* Mobile: simple numbered list. Desktop: horizontal timeline */}
-          <div className="hidden md:block relative">
-            <div className="absolute left-0 top-6 w-full h-[2px] border-t-2 border-dotted border-[var(--lime)] opacity-30 z-0" />
-            <div className="flex flex-row justify-between gap-6 relative z-10">
+          {/* Mobile: clean vertical list with heading included in flow */}
+          <div className="md:hidden flex flex-col gap-12">
+            <motion.h3
+               initial={{ opacity: 0, y: 20 }}
+               animate={inView ? { opacity: 1, y: 0 } : {}}
+               transition={{ duration: 0.6, delay: 0.4 }}
+               className="font-display text-3xl font-bold text-[var(--cream)]"
+            >
+              My Process
+            </motion.h3>
+            <div className="flex flex-col gap-10">
               {processSteps.map((step, i) => (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.5 + i * 0.15 }}
-                  className="flex flex-col items-center text-center w-1/4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
+                  className="flex items-start gap-5"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[var(--black)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg mb-6 shadow-[0_0_15px_rgba(200,241,53,0.2)]">
+                  <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]">
                     {step.id}
                   </div>
-                  <div>
-                    <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-2">
+                  <div className="pt-2">
+                    <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
                       {step.title}
                     </h4>
-                    <p className="text-[var(--cream-muted)] text-[13px] leading-relaxed">
+                    <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
                 </motion.div>
               ))}
             </div>
-          </div>
-
-          {/* Mobile: clean vertical list, no absolute hacks */}
-          <div className="flex md:hidden flex-col gap-6">
-            {processSteps.map((step, i) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                className="flex items-start gap-4"
-              >
-                <div className="w-10 h-10 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-base shadow-[0_0_12px_rgba(200,241,53,0.15)]">
-                  {step.id}
-                </div>
-                <div className="pt-1.5">
-                  <h4 className="font-display text-base font-bold text-[var(--cream)] mb-1">
-                    {step.title}
-                  </h4>
-                  <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
 
