@@ -127,7 +127,7 @@ const About = () => {
                   { 
                     label: "Agency", 
                     value: (
-                      <a href="#about" className="group flex items-center gap-2 px-3 py-1 mt-[-4px] mb-[-4px] rounded-full bg-[var(--black)] border border-[var(--gray-2)] hover:border-[var(--lime)] hover:shadow-[0_0_10px_rgba(200,241,53,0.15)] transition-all duration-300 no-underline">
+                      <a href="#about" className="group flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--black)] border border-[var(--gray-2)] hover:border-[var(--lime)] hover:shadow-[0_0_10px_rgba(200,241,53,0.15)] transition-all duration-300 no-underline">
                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--lime)] animate-pulse" />
                         <span className="text-xs tracking-wider uppercase font-bold text-[var(--cream)] group-hover:text-[var(--lime)] transition-colors">Omnicraft</span>
                       </a>
@@ -260,7 +260,7 @@ const About = () => {
                 Omnicraft isn't just a project — it's a vision. A team of designers, developers, motion artists, and storytellers from Karachi, building bold digital experiences for brands across the globe. We're just getting started.
               </p>
 
-              <div className="flex flex-wrap gap-2 md:gap-3">
+              <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 md:gap-3">
                 {roles.map((role, i) => (
                   <motion.span
                     key={role}

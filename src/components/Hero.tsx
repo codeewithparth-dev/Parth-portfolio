@@ -28,6 +28,7 @@ function useScramble(text: string, trigger: boolean) {
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [scramble, setScramble] = useState(false)
+  const [activeSkill, setActiveSkill] = useState('React')
 
   useEffect(() => {
     const timer = setTimeout(() => setScramble(true), 400)
@@ -112,7 +113,7 @@ const Hero = () => {
 
       <AnimatedBlob 
         className="hidden md:block"
-        style={{ top: '5%', right: '5%', width: '500px', height: '500px', zIndex: 0 }}
+        style={{ top: '5%', right: '5%', width: '500px', height: '500px', zIndex: 0, borderRadius: '50%', overflow: 'hidden' }}
         opacity={0.4} 
         scale={1.5} 
       />
@@ -312,6 +313,8 @@ const Hero = () => {
           <div className="flex gap-[12px] flex-wrap justify-center md:justify-start">
             {['React', 'TypeScript', 'Tailwind', 'Figma', 'Framer Motion'].map((s, i) => (
               <motion.span
+                onMouseEnter={() => setActiveSkill(s)}
+                onMouseLeave={() => setActiveSkill('React')}
                 key={s}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -320,12 +323,14 @@ const Hero = () => {
                   fontSize: '11px',
                   letterSpacing: '2px',
                   textTransform: 'uppercase',
-                  color: 'var(--cream)',
                   padding: '6px 12px',
                   border: '1px solid var(--gray)',
                   borderRadius: '4px',
                   fontFamily: 'var(--font-display)',
                   transition: 'all 0.2s',
+                  borderColor: activeSkill === s ? 'var(--lime)' : 'var(--gray)',
+                  color: activeSkill === s ? 'var(--lime)' : 'var(--cream)',
+                  backgroundColor: activeSkill === s ? 'rgba(200,241,53,0.12)' : 'transparent',
                 }}
                 whileHover={{ borderColor: 'var(--lime)', color: 'var(--lime)' } as any}
               >
