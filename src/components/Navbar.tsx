@@ -44,7 +44,7 @@ const Navbar = () => {
           left: 0,
           right: 0,
           zIndex: 1000,
-          padding: '20px 40px',
+          padding: 'clamp(16px, 4vw, 40px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -55,7 +55,7 @@ const Navbar = () => {
         }}
       >
         {/* Logo */}
-        <a href="#hero" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '22px', letterSpacing: '-1px' }}>
+        <a href="#hero" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(18px, 5vw, 24px)', letterSpacing: '-1px' }}>
           PK<span style={{ color: 'var(--lime)' }}>.</span>
         </a>
 

@@ -28,7 +28,6 @@ function useScramble(text: string, trigger: boolean) {
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [scramble, setScramble] = useState(false)
-  const [activeSkill, setActiveSkill] = useState('React')
 
   useEffect(() => {
     const timer = setTimeout(() => setScramble(true), 400)
@@ -134,7 +133,7 @@ const Hero = () => {
         borderRadius: '50%', zIndex: 0,
       }} />
 
-      <div className="container relative z-10 pt-[120px] pb-[80px] w-full flex flex-col items-center text-center md:items-start md:text-left">
+      <div className="container relative z-10 pt-[100px] md:pt-[120px] pb-[60px] md:pb-[80px] w-full flex flex-col items-center text-center md:items-start md:text-left px-4 md:px-0">
 
         {/* Status pill */}
         <motion.div
@@ -239,7 +238,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col md:flex-row gap-[16px] items-center flex-wrap mb-[60px] md:mb-[80px] w-full xl:w-auto px-4 md:px-0"
+          className="flex flex-col md:flex-row gap-[20px] md:gap-[20px] items-center flex-wrap mb-[80px] md:mb-[100px] w-full xl:w-auto px-4 md:px-0"
         >
           <a
             href="#work"
@@ -308,29 +307,27 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-col md:flex-row items-center justify-between flex-wrap gap-[24px] w-full"
+          className="flex flex-col md:flex-row items-center justify-between flex-wrap gap-[32px] md:gap-[24px] w-full"
         >
-          <div className="flex gap-[12px] flex-wrap justify-center md:justify-start">
+          <div className="flex gap-[10px] flex-wrap justify-center md:justify-start">
             {['React', 'TypeScript', 'Tailwind', 'Figma', 'Framer Motion'].map((s, i) => (
               <motion.span
-                onMouseEnter={() => setActiveSkill(s)}
-                onMouseLeave={() => setActiveSkill('React')}
                 key={s}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 + i * 0.08 }}
                 style={{
                   fontSize: '11px',
-                  letterSpacing: '2px',
+                  letterSpacing: '1.5px',
                   textTransform: 'uppercase',
-                  padding: '6px 12px',
-                  border: '1px solid var(--gray)',
-                  borderRadius: '4px',
+                  padding: '7px 16px',
+                  border: '1.5px solid var(--lime)',
+                  borderRadius: '50px',
                   fontFamily: 'var(--font-display)',
-                  transition: 'all 0.2s',
-                  borderColor: activeSkill === s ? 'var(--lime)' : 'var(--gray)',
-                  color: activeSkill === s ? 'var(--lime)' : 'var(--cream)',
-                  backgroundColor: activeSkill === s ? 'rgba(200,241,53,0.12)' : 'transparent',
+                  transition: 'all 0.3s ease',
+                  color: 'var(--lime)',
+                  backgroundColor: 'rgba(200,241,53,0.08)',
+                  fontWeight: 600,
                 }}
                 whileHover={{ borderColor: 'var(--lime)', color: 'var(--lime)' } as any}
               >

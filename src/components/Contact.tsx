@@ -15,7 +15,7 @@ const Contact = () => {
         opacity={0.1} 
         scale={2} 
       />
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 md:px-0">
 
         {/* Section label */}
         <motion.div

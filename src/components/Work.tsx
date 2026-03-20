@@ -37,7 +37,7 @@ const Work = () => {
         opacity={0.15} 
         scale={1} 
       />
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 md:px-0">
 
         {/* Section label */}
         <motion.div
@@ -116,11 +116,14 @@ const Work = () => {
                   {project.tags.map(tag => (
                     <span key={tag} style={{
                       fontSize: '11px',
-                      letterSpacing: '1px',
-                      color: 'var(--gray)',
-                      padding: '3px 10px',
-                      border: '1px solid var(--gray-2)',
-                      borderRadius: '4px',
+                      letterSpacing: '1.5px',
+                      color: 'var(--lime)',
+                      padding: '6px 14px',
+                      border: '1.5px solid var(--lime)',
+                      borderRadius: '50px',
+                      fontWeight: 600,
+                      backgroundColor: 'rgba(200,241,53,0.08)',
+                      fontFamily: 'var(--font-display)',
                     }}>
                       {tag}
                     </span>
