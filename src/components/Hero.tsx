@@ -28,7 +28,7 @@ function useScramble(text: string, trigger: boolean) {
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [scramble, setScramble] = useState(false)
-  
+
   useEffect(() => {
     const timer = setTimeout(() => setScramble(true), 400)
     return () => clearTimeout(timer)
@@ -238,8 +238,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col md:flex-row gap-[20px] md:gap-[20px] items-center flex-wrap mb-[80px] md:mb-[100px] w-full xl:w-auto px-4 md:px-0"
-        >
+          className="flex flex-col md:flex-row gap-[20px] md:gap-[20px] items-center flex-wrap mb-[48px] md:mb-[64px] w-full xl:w-auto px-4 md:px-0"        >
           <a
             href="#work"
             className="w-full md:w-auto text-center"
@@ -275,27 +274,29 @@ const Hero = () => {
             href="#contact"
             className="w-full md:w-auto text-center"
             style={{
-              border: '1px solid var(--gray)',
-              color: 'var(--cream-muted)',
+              border: '1.5px solid var(--lime)',
+              color: 'var(--lime)',
               padding: '16px 36px',
               borderRadius: '50px',
               fontSize: '14px',
-              fontWeight: 400,
+              fontWeight: 600,
               letterSpacing: '0.5px',
+              fontFamily: 'var(--font-display)',
               transition: 'all 0.3s ease',
               display: 'inline-block',
+              background: 'transparent',
             }}
             onMouseEnter={e => {
               const el = e.target as HTMLElement
-              el.style.borderColor = 'var(--lime)'
-              el.style.color = 'var(--lime)'
+              el.style.background = 'rgba(200,241,53,0.1)'
               el.style.transform = 'translateY(-3px)'
+              el.style.boxShadow = '0 12px 40px rgba(200,241,53,0.15)'
             }}
             onMouseLeave={e => {
               const el = e.target as HTMLElement
-              el.style.borderColor = 'var(--gray)'
-              el.style.color = 'var(--cream-muted)'
+              el.style.background = 'transparent'
               el.style.transform = 'translateY(0)'
+              el.style.boxShadow = 'none'
             }}
           >
             Let's Talk

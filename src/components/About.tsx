@@ -6,7 +6,7 @@ import AnimatedBlob from './AnimatedBlob'
 const skills = [
   { name: 'React.js', level: 85 },
   { name: 'UI/UX Design', level: 80 },
-  { name: 'Tailwind CSS', level: 90 },
+  { name: 'Tailwind CSS', level: 90 }, 
   { name: 'TypeScript', level: 70 },
   { name: 'Figma', level: 75 },
   { name: 'Framer Motion', level: 72 },
@@ -116,7 +116,7 @@ const About = () => {
               initial={{ opacity: 0, x: 0 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-[var(--black-2)] p-6 md:p-10 border-l-[3px] border-[var(--lime)] w-full"
+              className="bg-[var(--black-2)] p-5 md:p-10 border-l-[3px] border-[var(--lime)] w-full ml-0"
             >
               <div className="flex flex-col gap-5 md:gap-7">
                 {[
@@ -260,7 +260,7 @@ const About = () => {
                 Omnicraft isn't just a project — it's a vision. A team of designers, developers, motion artists, and storytellers from Karachi, building bold digital experiences for brands across the globe. We're just getting started.
               </p>
 
-              <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 md:gap-3">
+              <div className="flex flex-wrap justify-center md:justify-start items-center gap-3 md:gap-3 mt-2">
                 {roles.map((role, i) => (
                   <motion.span
                     key={role}
@@ -383,26 +383,32 @@ const About = () => {
             </motion.h3>
             <div className="flex flex-col gap-10">
               {processSteps.map((step, i) => (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                  className="flex items-start gap-5"
-                >
-                  <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]">
-                    {step.id}
-                  </div>
-                  <div className="pt-2">
-                    <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
-                      {step.title}
-                    </h4>
-                    <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+  <div key={step.id}>
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
+      className="flex items-start gap-5"
+    >
+      <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]">
+        {step.id}
+      </div>
+      <div className="pt-2">
+        <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
+          {step.title}
+        </h4>
+        <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
+          {step.desc}
+        </p>
+      </div>
+    </motion.div>
+    {i < processSteps.length - 1 && (
+      <div className="flex justify-center mt-4 text-[var(--lime)] text-xl opacity-60">
+        ↓
+      </div>
+    )}
+  </div>
+))}
             </div>
           </div>
         </div>

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 @import "tailwindcss";
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -46,10 +48,12 @@ body {
   body {
     cursor: auto;
   }
+
   .cursor,
   .cursor-follower {
     display: none !important;
   }
+
   .magnetic {
     cursor: auto;
   }
@@ -96,16 +100,21 @@ body {
 ::-webkit-scrollbar {
   width: 3px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--black);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--lime);
   border-radius: 10px;
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display);
   font-weight: 800;
   line-height: 1;
@@ -151,8 +160,13 @@ body::before {
 }
 
 /* Utility */
-.lime { color: var(--lime); }
-.cream-muted { color: var(--cream-muted); }
+.lime {
+  color: var(--lime);
+}
+
+.cream-muted {
+  color: var(--cream-muted);
+}
 
 /* Magnetic button base */
 .magnetic {
@@ -175,4 +189,18 @@ body::before {
   z-index: 9995;
   transform: scaleY(0);
   transform-origin: bottom;
+}
+
+
+/* Mobile fixes */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  section {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
 }
