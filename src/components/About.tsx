@@ -6,7 +6,7 @@ import AnimatedBlob from './AnimatedBlob'
 const skills = [
   { name: 'React.js', level: 85 },
   { name: 'UI/UX Design', level: 80 },
-  { name: 'Tailwind CSS', level: 90 }, 
+  { name: 'Tailwind CSS', level: 90 },
   { name: 'TypeScript', level: 70 },
   { name: 'Figma', level: 75 },
   { name: 'Framer Motion', level: 72 },
@@ -51,19 +51,19 @@ const About = () => {
 
   return (
     <section id="about" ref={ref} className="relative bg-[var(--black)] py-20 md:py-48 overflow-hidden">
-      
-      <AnimatedBlob 
+
+      <AnimatedBlob
         className="hidden md:block"
         style={{ bottom: '10%', left: '-5%', width: '400px', height: '400px', zIndex: 0 }}
-        opacity={0.2} 
-        scale={1.2} 
+        opacity={0.2}
+        scale={1.2}
       />
 
-<div className="container relative z-10 flex flex-col gap-16 md:gap-24 px-4 md:px-0">
+      <div className="container relative z-10 flex flex-col gap-16 md:gap-24 px-4 md:px-0">
 
         {/* --- BLOCK 1: THE PERSON --- */}
         <div className="flex flex-col md:grid md:grid-cols-[60%_1fr] gap-10 md:gap-24 items-start">
-          
+
           {/* Left Side (60%) */}
           <div className="flex flex-col gap-6 md:gap-12">
             <motion.div
@@ -124,14 +124,14 @@ const About = () => {
                   { label: "Started", value: "2 years ago" },
                   { label: "Approach", value: "Design + Code" },
                   { label: "Status", value: <span className="flex items-center justify-end gap-2"><span className="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse shadow-[0_0_10px_rgba(200,241,53,0.6)]" /> Available</span> },
-                  { 
-                    label: "Agency", 
+                  {
+                    label: "Agency",
                     value: (
                       <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--lime)] border border-[var(--lime)] text-[var(--black)] text-xs tracking-wider uppercase font-bold transition-all duration-300">
                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--black)] animate-pulse" />
                         Omnicraft
                       </span>
-                    ) 
+                    )
                   },
                 ].map((row, idx, arr) => (
                   <div key={row.label} className={`flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-0 pb-5 md:pb-6 ${idx !== arr.length - 1 ? 'border-b border-[var(--gray-2)]' : 'pb-0'}`}>
@@ -201,7 +201,7 @@ const About = () => {
               </span>
             </h2>
           </motion.div>
- 
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 w-full text-left sm:mt-0">
             {diffCards.map((card, i) => (
               <motion.div
@@ -227,12 +227,12 @@ const About = () => {
 
         {/* --- BLOCK 3: THE VISION --- */}
         <div className="relative gap-16 md:gap-24 items-center">
-           {/* Watermark moved to background layer */}
-           <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0">
-             <span className="font-display text-[12vw] font-extrabold leading-none text-transparent opacity-[0.03]" style={{ WebkitTextStroke: '4px var(--cream)' }}>
-               OMNICRAFT
-             </span>
-           </div>
+          {/* Watermark moved to background layer */}
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0">
+            <span className="font-display text-[12vw] font-extrabold leading-none text-transparent opacity-[0.03]" style={{ WebkitTextStroke: '4px var(--cream)' }}>
+              OMNICRAFT
+            </span>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, x: 0 }}
@@ -242,7 +242,7 @@ const About = () => {
           >
             {/* Timeline marker */}
             <div className="w-[3px] bg-[var(--lime)] flex-shrink-0" />
-            
+
             <div className="flex flex-col py-2">
               <span className="flex items-center gap-3 md:gap-4 text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold mb-8 md:mb-6">
                 <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center border border-[rgba(200,241,53,0.3)] shadow-[0_0_15px_rgba(200,241,53,0.2)]">
@@ -251,11 +251,11 @@ const About = () => {
                 </div>
                 OMNICRAFT
               </span>
-              
+
               <h2 className="font-display italic text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-0.5px] md:tracking-[-1px] text-[var(--cream)] mb-6 md:mb-8">
                 A worldwide creative agency.
               </h2>
-              
+
               <p className="text-[var(--cream-muted)] text-base md:text-lg leading-relaxed font-light w-full md:max-w-[560px] mb-8 md:mb-12">
                 Omnicraft isn't just a project — it's a vision. A team of designers, developers, motion artists, and storytellers from Karachi, building bold digital experiences for brands across the globe. We're just getting started.
               </p>
@@ -278,14 +278,14 @@ const About = () => {
         </div>
 
         {/* --- EXPANDED SECTIONS (EXISTING) --- */}
-        
+
         {/* Services - What I Do */}
         <div className="mt-0">
           <motion.h3
-             initial={{ opacity: 0, y: 20 }}
-             animate={inView ? { opacity: 1, y: 0 } : {}}
-             transition={{ duration: 0.6, delay: 0.3 }}
-             className="font-display text-3xl md:text-5xl font-bold text-[var(--cream)] mb-12 md:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="font-display text-3xl md:text-5xl font-bold text-[var(--cream)] mb-12 md:mb-12"
           >
             What I Do
           </motion.h3>
@@ -303,7 +303,7 @@ const About = () => {
                   <span className="absolute -top-4 -right-2 text-8xl font-display font-extrabold text-transparent opacity-10 transition-colors group-hover:text-[var(--lime)]" style={{ WebkitTextStroke: '1px var(--cream-muted)', pointerEvents: 'none' }}>
                     {service.id}
                   </span>
-                  
+
                   <div className="relative z-10 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center text-[var(--lime)] mb-5 md:mb-6">
                     <Icon size={22} />
                   </div>
@@ -324,10 +324,10 @@ const About = () => {
           {/* Desktop: horizontal timeline */}
           <div className="hidden md:block">
             <motion.h3
-               initial={{ opacity: 0, y: 20 }}
-               animate={inView ? { opacity: 1, y: 0 } : {}}
-               transition={{ duration: 0.6, delay: 0.4 }}
-               className="font-display text-5xl font-bold text-[var(--cream)] mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="font-display text-5xl font-bold text-[var(--cream)] mb-16"
             >
               My Process
             </motion.h3>
@@ -374,41 +374,44 @@ const About = () => {
           {/* Mobile: clean vertical list with heading included in flow */}
           <div className="md:hidden flex flex-col gap-12">
             <motion.h3
-               initial={{ opacity: 0, y: 20 }}
-               animate={inView ? { opacity: 1, y: 0 } : {}}
-               transition={{ duration: 0.6, delay: 0.4 }}
-               className="font-display text-3xl font-bold text-[var(--cream)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="font-display text-3xl font-bold text-[var(--cream)]"
             >
               My Process
             </motion.h3>
             <div className="flex flex-col gap-10">
               {processSteps.map((step, i) => (
-  <div key={step.id}>
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-      className="flex items-start gap-5"
-    >
-      <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]">
-        {step.id}
-      </div>
-      <div className="pt-2">
-        <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
-          {step.title}
-        </h4>
-        <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
-          {step.desc}
-        </p>
-      </div>
-    </motion.div>
-    {i < processSteps.length - 1 && (
-      <div className="flex justify-center mt-4 text-[var(--lime)] text-xl opacity-60">
-        ↓
-      </div>
-    )}
-  </div>
-))}
+                <div key={step.id}>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
+                    className="flex items-start gap-5"
+                  >
+                    <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]">
+                      {step.id}
+                    </div>
+                    <div className="pt-2">
+                      <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
+                        {step.title}
+                      </h4>
+                      <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                  {i < processSteps.length - 1 && (
+                    <div className="flex items-center gap-5 mt-2 mb-2">
+                      <div className="w-12 flex-shrink-0" />
+                      <span style={{ color: 'var(--lime)', fontSize: '20px', opacity: 0.6 }}>↓</span>
+
+                      ↓
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
