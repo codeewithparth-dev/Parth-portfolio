@@ -238,7 +238,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col md:flex-row gap-[20px] md:gap-[20px] items-center flex-wrap mb-[48px] md:mb-[64px] w-full xl:w-auto">
+          className="flex flex-col md:flex-row gap-[20px] md:gap-[20px] items-center flex-wrap mb-[64px] md:mb-[64px] w-full xl:w-auto mt-8 md:mt-0">
           <a
             href="#work"
             className="w-full md:w-auto"
@@ -310,9 +310,9 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-col md:flex-row items-center justify-between flex-wrap gap-[32px] md:gap-[24px] w-full mt-4 md:mt-0"
+          className="flex flex-col md:flex-row items-center justify-between flex-wrap gap-[48px] md:gap-[24px] w-full mt-4 md:mt-0"
         >
-          <div className="flex gap-[10px] flex-wrap justify-center md:justify-start mt-6">
+          <div className="flex gap-[10px] flex-wrap justify-center md:justify-start mt-8 md:mt-0">
             {['React', 'TypeScript', 'Tailwind', 'Figma', 'Framer Motion'].map((s, i) => (
               <motion.span
                 key={s}
