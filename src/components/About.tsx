@@ -116,8 +116,8 @@ const About = () => {
               initial={{ opacity: 0, x: 0 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-[var(--black-2)] p-5 md:p-10 border-l-[3px] border-[var(--lime)] w-full ml-0 overflow-hidden"
-            >
+              className="bg-[var(--black-2)] border-l-[3px] border-[var(--lime)] w-full ml-0 overflow-hidden"
+              style={{ padding: '20px 20px 20px 32px' }}            >
               <div className="flex flex-col gap-5 md:gap-7">
                 {[
                   { label: "Based in", value: "Karachi, Pakistan 🇵🇰" },
@@ -267,8 +267,8 @@ const About = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + (i * 0.1) }}
-                    className="px-4 md:px-5 py-2 md:py-2.5 bg-[rgba(200,241,53,0.08)] border-[1.5px] border-[var(--lime)] text-[var(--lime)] text-xs md:text-sm font-semibold rounded-full tracking-wider uppercase transition-all duration-300 hover:bg-[rgba(200,241,53,0.15)] hover:shadow-[0_0_12px_rgba(200,241,53,0.2)]"
-                  >
+                    style={{ padding: '6px 14px' }}
+                    className="bg-[rgba(200,241,53,0.08)] border-[1.5px] border-[var(--lime)] text-[var(--lime)] text-[11px] font-semibold rounded-full tracking-wider uppercase transition-all duration-300 hover:bg-[rgba(200,241,53,0.15)] hover:shadow-[0_0_12px_rgba(200,241,53,0.2)]">
                     {role}
                   </motion.span>
                 ))}

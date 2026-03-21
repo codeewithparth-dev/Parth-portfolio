@@ -312,7 +312,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="flex flex-col md:flex-row items-center justify-between flex-wrap gap-[32px] md:gap-[24px] w-full mt-4 md:mt-0"
         >
-          <div className="flex gap-[10px] flex-wrap justify-center md:justify-start">
+          <div className="flex gap-[10px] flex-wrap justify-center md:justify-start mt-6">
             {['React', 'TypeScript', 'Tailwind', 'Figma', 'Framer Motion'].map((s, i) => (
               <motion.span
                 key={s}
@@ -323,7 +323,7 @@ const Hero = () => {
                   fontSize: '11px',
                   letterSpacing: '1.5px',
                   textTransform: 'uppercase',
-                  padding: '7px 16px',
+                  padding: '6px 14px',
                   border: '1.5px solid var(--lime)',
                   borderRadius: '50px',
                   fontFamily: 'var(--font-display)',
