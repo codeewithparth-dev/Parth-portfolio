@@ -134,9 +134,9 @@ const About = () => {
                     )
                   },
                 ].map((row, idx, arr) => (
-                  <div key={row.label} className={`flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-0 pb-5 md:pb-6 ${idx !== arr.length - 1 ? 'border-b border-[var(--gray-2)]' : 'pb-0'}`}>
-                    <span className="text-[10px] md:text-xs uppercase tracking-wider text-[var(--cream-muted)] font-semibold">{row.label}</span>
-                    <span className="text-sm md:text-base text-[var(--cream)] font-medium text-left sm:text-right flex items-center min-h-[24px]">{row.value}</span>
+                  <div key={row.label} className={`flex flex-row justify-between items-center gap-4 pb-5 md:pb-6 ${idx !== arr.length - 1 ? 'border-b border-[var(--gray-2)]' : 'pb-0'}`}>
+                    <span className="text-[10px] md:text-xs uppercase tracking-wider text-[var(--cream-muted)] font-semibold flex-shrink-0">{row.label}</span>
+                    <span className="text-sm md:text-base text-[var(--cream)] font-medium text-right flex items-center justify-end min-h-[24px]">{row.value}</span>
                   </div>
                 ))}
               </div>
@@ -226,7 +226,7 @@ const About = () => {
         </div>
 
         {/* --- BLOCK 3: THE VISION --- */}
-        <div className="relative gap-16 md:gap-24 items-center">
+        <div className="relative gap-16 md:gap-24 items-center overflow-hidden">
           {/* Watermark moved to background layer */}
           <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0">
             <span className="font-display text-[12vw] font-extrabold leading-none text-transparent opacity-[0.03]" style={{ WebkitTextStroke: '4px var(--cream)' }}>
@@ -252,7 +252,7 @@ const About = () => {
                 OMNICRAFT
               </span>
 
-              <h2 className="font-display italic text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-0.5px] md:tracking-[-1px] text-[var(--cream)] mb-6 md:mb-8">
+              <h2 className="font-display italic text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-0.5px] md:tracking-[-1px] text-[var(--cream)] mb-6 md:mb-8 break-words">
                 A worldwide creative agency.
               </h2>
 
@@ -371,8 +371,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* Mobile: clean vertical list with heading included in flow */}
-          <div className="md:hidden flex flex-col gap-12">
+          {/* Mobile: vertical timeline */}
+          <div className="md:hidden flex flex-col gap-8">
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -381,33 +381,40 @@ const About = () => {
             >
               My Process
             </motion.h3>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col">
               {processSteps.map((step, i) => (
-                <div key={step.id}>
+                <div key={step.id} className="flex gap-5">
+                  {/* Left: circle + connecting line */}
+                  <div className="flex flex-col items-center flex-shrink-0 w-12">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.4, delay: 0.5 + i * 0.12 }}
+                      className="w-12 h-12 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]"
+                    >
+                      {step.id}
+                    </motion.div>
+                    {i < processSteps.length - 1 && (
+                      <div
+                        className="flex-1 my-2"
+                        style={{ width: '2px', background: 'rgba(200,241,53,0.25)', minHeight: '32px' }}
+                      />
+                    )}
+                  </div>
+                  {/* Right: text content */}
                   <motion.div
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: -16 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                    className="flex items-start gap-5"
+                    className="pt-2 pb-6"
                   >
-                    <div className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]">
-                      {step.id}
-                    </div>
-                    <div className="pt-2">
-                      <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
-                        {step.title}
-                      </h4>
-                      <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
-                        {step.desc}
-                      </p>
-                    </div>
+                    <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
+                      {step.title}
+                    </h4>
+                    <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
+                      {step.desc}
+                    </p>
                   </motion.div>
-                  {i < processSteps.length - 1 && (
-                    <div className="flex items-center gap-5 mt-2 mb-2">
-                      <div className="w-12 flex-shrink-0" />
-                      <span style={{ color: 'var(--lime)', fontSize: '20px', opacity: 0.6 }}>↓</span>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>

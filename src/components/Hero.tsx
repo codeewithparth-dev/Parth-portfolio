@@ -241,7 +241,7 @@ const Hero = () => {
           className="flex flex-col md:flex-row gap-[20px] md:gap-[20px] items-center flex-wrap mb-[48px] md:mb-[64px] w-full xl:w-auto">
           <a
             href="#work"
-            className="w-full md:w-auto text-center"
+            className="w-full md:w-auto"
             style={{
               background: 'var(--lime)',
               color: 'var(--black)',
@@ -252,7 +252,8 @@ const Hero = () => {
               letterSpacing: '0.5px',
               fontFamily: 'var(--font-display)',
               transition: 'all 0.3s ease',
-              display: 'inline-block',
+              display: 'block',
+              textAlign: 'center',
             }}
             onMouseEnter={e => {
               const el = e.target as HTMLElement
@@ -272,7 +273,7 @@ const Hero = () => {
 
           <a
             href="#contact"
-            className="w-full md:w-auto text-center"
+            className="w-full md:w-auto"
             style={{
               border: '1.5px solid var(--lime)',
               color: 'var(--lime)',
@@ -283,7 +284,8 @@ const Hero = () => {
               letterSpacing: '0.5px',
               fontFamily: 'var(--font-display)',
               transition: 'all 0.3s ease',
-              display: 'inline-block',
+              display: 'block',
+              textAlign: 'center',
               background: 'transparent',
             }}
             onMouseEnter={e => {
