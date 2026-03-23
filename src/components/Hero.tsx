@@ -207,7 +207,7 @@ const Hero = () => {
             <span className="hidden md:inline-block" style={{ color: 'var(--gray)', fontSize: '18px' }}>—</span>
             <a
               href="#about"
-              className="group relative flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[var(--black-2)] border border-[var(--gray-2)] cursor-pointer overflow-hidden transition-all duration-500 hover:border-[var(--lime)] hover:shadow-[0_0_15px_rgba(200,241,53,0.15)] no-underline"
+              className="group relative flex items-center gap-3 px-5 py-2 rounded-full bg-[var(--black-2)] border border-[var(--gray-2)] cursor-pointer overflow-hidden transition-all duration-500 hover:border-[var(--lime)] hover:shadow-[0_0_15px_rgba(200,241,53,0.15)] no-underline"
             >
               {/* Shine effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(200,241,53,0.1)] to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
@@ -215,7 +215,7 @@ const Hero = () => {
               <div className="w-5 h-5 rounded-full bg-[var(--lime)] flex items-center justify-center text-[var(--black)] font-bold text-[10px] uppercase tracking-wider relative z-10 shadow-[0_0_10px_rgba(200,241,53,0.4)]">
                 O
               </div>
-              <span className="relative z-10 text-[var(--cream-muted)] group-hover:text-[var(--cream)] text-[13px] font-medium tracking-wide transition-colors">
+              <span className="relative z-10 text-[var(--cream-muted)] group-hover:text-[var(--cream)] text-[14px] font-medium tracking-wide transition-colors">
                 Founder at <span className="font-bold text-[var(--lime)]">Omnicraft</span>
               </span>
             </a>
