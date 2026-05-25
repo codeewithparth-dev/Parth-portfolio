@@ -332,7 +332,7 @@ const Hero = () => {
                   backgroundColor: 'rgba(200,241,53,0.08)',
                   fontWeight: 600,
                 }}
-                whileHover={{ borderColor: 'var(--lime)', color: 'var(--lime)' } as any}
+                whileHover={{ borderColor: 'var(--lime)', color: 'var(--lime)' }}
               >
                 {s}
               </motion.span>

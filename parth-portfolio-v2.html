@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parth — Frontend Developer & UI/UX Designer</title>
+<meta name="description" content="Parth is a frontend developer and UI/UX designer crafting premium digital experiences." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #06030f;
+  --surface: rgba(255,255,255,0.04);
+  --surface2: rgba(255,255,255,0.07);
+  --violet: #7c3aed;
+  --violet-bright: #a855f7;
+  --pink: #fe8989;
+  --pink-light: #fbb6b6;
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.45);
+  --border: rgba(255,255,255,0.08);
+  --border-bright: rgba(168,85,247,0.3);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── SHADER CANVAS ── */
+#shader-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── DARK OVERLAY ── */
+.overlay {
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(6,3,15,0.55) 0%, rgba(6,3,15,0.92) 70%);
+  z-index: 1; pointer-events: none;
+}
+
+/* All content sits above shader */
+nav, main, footer { position: relative; z-index: 10; }
+
+/* ── NOISE ── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03; pointer-events: none;
+}
+
+/* ── CURSOR ── */
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(168,85,247,0.6);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: left 0.12s ease, top 0.12s ease, width 0.3s, height 0.3s, opacity 0.3s;
+}
+.cursor-dot.big { width: 0; height: 0; }
+.cursor-ring.big { width: 52px; height: 52px; border-color: rgba(254,137,137,0.5); }
+
+/* ── PROGRESS ── */
+.progress {
+  position: fixed; top: 0; left: 0;
+  height: 1px; width: 0;
+  background: linear-gradient(90deg, var(--violet-bright), var(--pink));
+  z-index: 1000;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  padding: 32px 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: padding 0.4s, background 0.4s, border 0.4s;
+  z-index: 500;
+}
+nav.scrolled {
+  padding: 20px 56px;
+  background: rgba(6,3,15,0.7);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+  text-decoration: none; color: #fff;
+}
+.nav-logo em {
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  color: var(--pink);
+}
+.nav-menu { display: flex; align-items: center; gap: 48px; list-style: none; }
+.nav-menu a {
+  text-decoration: none; color: var(--muted);
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.nav-menu a:hover { color: #fff; }
+.nav-hire {
+  background: linear-gradient(135deg, var(--violet) 0%, #9333ea 100%);
+  color: #fff !important;
+  padding: 10px 26px !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  transition: transform 0.25s, box-shadow 0.25s !important;
+}
+.nav-hire:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(124,58,237,0.5) !important;
+  color: #fff !important;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 180px 56px 120px;
+  position: relative;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 48px;
+  opacity: 0; animation: riseUp 0.8s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.eyebrow-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 12px #4ade80;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.eyebrow-text {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.35em; color: var(--muted); font-weight: 500;
+}
+
+.hero-h1 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  opacity: 0; animation: riseUp 1s 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-h1 .line2 {
+  display: block;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--violet-bright) 0%, var(--pink) 60%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 8px;
+}
+
+.hero-bottom {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-top: 72px; gap: 40px; flex-wrap: wrap;
+  opacity: 0; animation: riseUp 1s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-desc {
+  max-width: 420px;
+  color: var(--muted); font-size: 1.05rem; line-height: 1.85;
+}
+.hero-desc strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-glow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--violet) 0%, #9333ea 100%);
+  color: #fff; text-decoration: none;
+  padding: 16px 36px; border-radius: 9999px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+.btn-glow::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+}
+.btn-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(124,58,237,0.5);
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--border-bright);
+  color: rgba(255,255,255,0.75); text-decoration: none;
+  padding: 16px 36px; border-radius: 9999px;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn-ghost:hover {
+  background: rgba(168,85,247,0.1);
+  border-color: rgba(168,85,247,0.6);
+  color: #fff;
+}
+
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0; overflow: hidden;
+}
+.marquee-track {
+  display: flex; gap: 0;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+.marquee-item {
+  display: flex; align-items: center; gap: 24px;
+  padding: 0 40px; white-space: nowrap;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900; font-size: 1rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted);
+}
+.marquee-item span { color: var(--pink); font-size: 1.2rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── ABOUT ── */
+#about {
+  padding: 160px 56px;
+  border-top: 1px solid var(--border);
+}
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: 100px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.about-visual {
+  position: relative;
+}
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2.5rem; overflow: hidden;
+  aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  backdrop-filter: blur(12px);
+}
+.about-card-inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; color: var(--muted);
+  font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.about-card-inner svg { opacity: 0.25; }
+/* Purple-pink glow behind card */
+.about-glow {
+  position: absolute;
+  width: 120%; height: 120%; top: -10%; left: -10%;
+  background: radial-gradient(circle at 40% 50%, rgba(124,58,237,0.25) 0%, transparent 60%),
+              radial-gradient(circle at 70% 80%, rgba(254,137,137,0.15) 0%, transparent 50%);
+  pointer-events: none; z-index: -1;
+}
+.about-chip {
+  position: absolute; bottom: 28px; left: 28px;
+  background: rgba(6,3,15,0.85); backdrop-filter: blur(16px);
+  border: 1px solid var(--border-bright);
+  border-radius: 1.2rem; padding: 16px 24px;
+}
+.chip-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--muted); }
+.chip-val { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: 1.3rem; margin-top: 6px; }
+.chip-val em { font-family: 'Instrument Serif', serif; color: var(--pink); }
+
+.about-copy .label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.5em;
+  color: var(--violet-bright); font-weight: 700; margin-bottom: 24px; display: block;
+}
+.about-copy h2 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 900; letter-spacing: -0.04em;
+  text-transform: uppercase; line-height: 0.9;
+  margin-bottom: 40px;
+}
+.about-copy h2 em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic; font-weight: 400;
+  text-transform: none;
+  background: linear-gradient(135deg, var(--violet-bright), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.about-copy p {
+  color: var(--muted); line-height: 1.9; font-size: 1rem; margin-bottom: 20px;
+}
+.about-copy p strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.s-tag {
+  border: 1px solid var(--border);
+  padding: 8px 18px; border-radius: 9999px;
+  font-size: 12px; color: var(--muted); letter-spacing: 0.05em;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.s-tag:hover {
+  border-color: var(--violet-bright);
+  color: var(--violet-bright);
+  background: rgba(168,85,247,0.08);
+}
+
+/* ── WORK ── */
+#work { padding: 160px 56px; border-top: 1px solid var(--border); }
+.work-top {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  max-width: 1200px; margin: 0 auto 80px; flex-wrap: wrap; gap: 24px;
+}
+.work-top h2 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900; letter-spacing: -0.04em;
+  text-transform: uppercase; line-height: 0.9;
+}
+.work-top h2 em {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-weight: 400; text-transform: none;
+  background: linear-gradient(135deg, var(--violet-bright), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; display: block;
+}
+.grid-projects {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px; max-width: 1200px; margin: 0 auto;
+}
+.p-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2rem; overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, box-shadow 0.5s;
+  position: relative;
+}
+.p-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-bright);
+  box-shadow: 0 24px 60px rgba(124,58,237,0.2);
+}
+.p-card.wide { grid-column: span 7; }
+.p-card.tall { grid-column: span 5; }
+.p-card.full { grid-column: span 12; }
+.p-img {
+  aspect-ratio: 16/9; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.p-card.tall .p-img { aspect-ratio: 4/5; }
+.p-img-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(86,6,255,0.18) 0%, rgba(254,137,137,0.12) 100%);
+}
+.p-img-text {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 900; letter-spacing: -0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(254,137,137,0.2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative; z-index: 1;
+}
+.p-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,3,15,1) 0%, transparent 55%);
+}
+.p-pill {
+  position: absolute; top: 16px; right: 16px; z-index: 2;
+  background: rgba(6,3,15,0.8); backdrop-filter: blur(10px);
+  border: 1px solid var(--border-bright); border-radius: 9999px;
+  padding: 6px 16px; font-size: 11px;
+  color: var(--violet-bright); font-weight: 700;
+  opacity: 0; transform: translateY(-6px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.p-card:hover .p-pill { opacity: 1; transform: translateY(0); }
+.p-info { padding: 32px; }
+.p-cats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.p-cat {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em;
+  font-weight: 700; padding: 4px 14px; border-radius: 9999px;
+}
+.p-cat.violet { background: rgba(124,58,237,0.15); color: var(--violet-bright); }
+.p-cat.pink { background: rgba(254,137,137,0.12); color: var(--pink); }
+.p-cat.year { background: rgba(255,255,255,0.06); color: var(--muted); }
+.p-title {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 900; letter-spacing: -0.03em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.p-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+
+/* ── SERVICES ── */
+#services {
+  padding: 160px 56px;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, transparent 0%, rgba(86,6,255,0.04) 50%, transparent 100%);
+}
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services-head { margin-bottom: 80px; }
+.services-head h2 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900; letter-spacing: -0.04em;
+  text-transform: uppercase; line-height: 0.9;
+}
+.services-head h2 em {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-weight: 400; text-transform: none;
+  background: linear-gradient(135deg, var(--violet-bright), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.svc-list { display: flex; flex-direction: column; }
+.svc-item {
+  display: grid; grid-template-columns: 80px 1fr auto;
+  align-items: center; gap: 48px;
+  padding: 40px 0; border-top: 1px solid var(--border);
+  transition: padding 0.3s;
+  position: relative;
+}
+.svc-item:last-child { border-bottom: 1px solid var(--border); }
+.svc-item::before {
+  content: '';
+  position: absolute; left: 0; bottom: 0; top: 0;
+  width: 0; background: rgba(124,58,237,0.04);
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+  border-radius: 0 1rem 1rem 0;
+}
+.svc-item:hover::before { width: 100%; }
+.svc-num {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 2.5rem; font-weight: 900; letter-spacing: -0.05em;
+  color: var(--border); transition: color 0.3s;
+}
+.svc-item:hover .svc-num { color: rgba(168,85,247,0.3); }
+
+.svc-name {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 900; letter-spacing: -0.03em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.svc-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; max-width: 480px; }
+.svc-arrow {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 1.2rem;
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+  flex-shrink: 0;
+}
+.svc-item:hover .svc-arrow {
+  background: var(--violet); border-color: var(--violet);
+  color: #fff; transform: rotate(45deg);
+}
+
+/* ── STATS ── */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stat-cell {
+  padding: 60px 48px; text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell::before {
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  width: 1px; height: 0;
+  background: linear-gradient(to bottom, var(--violet-bright), transparent);
+  transition: height 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.stat-cell.visible::before { height: 100%; }
+.snum {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 900; letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--violet-bright) 0%, var(--pink) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; display: block;
+}
+.slabel {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.3em; color: var(--muted);
+  font-weight: 500; margin-top: 10px; display: block;
+}
+
+/* ── CONTACT ── */
+#contact {
+  padding: 160px 56px;
+  border-top: 1px solid var(--border);
+  text-align: center; position: relative; overflow: hidden;
+}
+.contact-glow {
+  position: absolute; width: 800px; height: 600px;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-glow2 {
+  position: absolute; width: 500px; height: 400px;
+  top: 60%; left: 55%; transform: translate(-50%,-50%);
+  background: radial-gradient(circle, rgba(254,137,137,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+#contact .label {
+  display: block; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5em;
+  color: var(--violet-bright); font-weight: 700; margin-bottom: 28px;
+}
+#contact h2 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 900; letter-spacing: -0.05em;
+  text-transform: uppercase; line-height: 0.85;
+  margin-bottom: 0;
+}
+#contact h2 em {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-weight: 400; text-transform: none;
+  background: linear-gradient(135deg, var(--violet-bright), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; display: block;
+}
+.contact-sub {
+  color: var(--muted); font-size: 1.05rem; line-height: 1.8;
+  margin: 40px auto; max-width: 460px;
+}
+.contact-email {
+  display: inline-block;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 700; letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition: color 0.3s, border-color 0.3s;
+  margin-bottom: 56px; display: block;
+}
+.contact-email:hover { color: var(--pink); border-color: var(--pink); }
+.socials { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.soc-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 9999px; padding: 12px 24px;
+  text-decoration: none; color: var(--muted);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.soc-btn:hover {
+  border-color: var(--violet-bright);
+  color: #fff;
+  background: rgba(168,85,247,0.08);
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px; z-index: 10; position: relative;
+}
+.f-logo {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900; font-size: 1rem;
+  letter-spacing: -0.03em; color: var(--muted);
+  text-decoration: none;
+}
+.f-logo em { font-style: italic; font-family: 'Instrument Serif', serif; color: var(--pink); }
+.f-copy { font-size: 12px; color: var(--muted); }
+.f-studio { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.f-studio:hover { color: var(--violet-bright); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-menu { display: none; }
+  #hero { padding: 130px 24px 80px; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+  #about, #work, #services, #contact { padding: 100px 24px; }
+  .about-inner { grid-template-columns: 1fr; gap: 56px; }
+  .grid-projects { grid-template-columns: 1fr; }
+  .p-card.wide, .p-card.tall, .p-card.full { grid-column: span 1; }
+  .svc-item { grid-template-columns: 48px 1fr; }
+  .svc-arrow { display: none; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat-cell { border-bottom: 1px solid var(--border); }
+  footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- SHADER CANVAS -->
+<canvas id="shader-canvas"></canvas>
+<div class="overlay"></div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cd"></div>
+<div class="cursor-ring" id="cr"></div>
+
+<!-- PROGRESS -->
+<div class="progress" id="prog"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Parth<em>.</em></a>
+  <ul class="nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact" class="nav-hire">Hire Me</a></li>
+  </ul>
+</nav>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">
+    <div class="eyebrow-dot"></div>
+    <span class="eyebrow-text">Available for freelance · Open to collabs</span>
+  </div>
+  <h1 class="hero-h1">
+    Parth
+    <span class="line2">crafts the web.</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      <strong>Frontend developer & UI/UX designer</strong> turning ambitious ideas into premium digital experiences. Fast, polished, and built to convert.
+    </p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-glow">View Work →</a>
+      <a href="#contact" class="btn-ghost">Let's Talk ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="mtrack"></div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-cell reveal">
+    <span class="snum" data-target="15">0+</span>
+    <span class="slabel">Projects Delivered</span>
+  </div>
+  <div class="stat-cell reveal d1">
+    <span class="snum" data-target="8">0+</span>
+    <span class="slabel">Happy Clients</span>
+  </div>
+  <div class="stat-cell reveal d2">
+    <span class="snum" data-target="2">0+</span>
+    <span class="slabel">Years of Craft</span>
+  </div>
+  <div class="stat-cell reveal d3">
+    <span class="snum" data-target="100">0%</span>
+    <span class="slabel">Built with Passion</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-glow"></div>
+      <div class="about-card">
+        <div class="about-card-inner">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8">
+            <circle cx="12" cy="8" r="4.5"/><path d="M3 21c0-4.5 4-8 9-8s9 3.5 9 8"/>
+          </svg>
+          <span>Add your photo</span>
+        </div>
+        <div class="about-chip">
+          <div class="chip-label">Based in</div>
+          <div class="chip-val">India <em>🇮🇳</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <span class="label reveal">Who I Am</span>
+      <h2 class="reveal d1">Designed<br/>to <em>impress.</em></h2>
+      <p class="reveal d2">I'm Parth — a <strong>frontend developer & UI/UX designer</strong> who obsesses over every pixel and interaction. I build websites that feel as good as they look.</p>
+      <p class="reveal d2">Founder of <strong>Omnicraft Studio</strong>. I take on selective freelance projects where craft and ambition meet.</p>
+      <div class="skills-wrap reveal d3">
+        <span class="s-tag">React</span><span class="s-tag">Vite</span>
+        <span class="s-tag">GSAP</span><span class="s-tag">Three.js</span>
+        <span class="s-tag">Figma</span><span class="s-tag">CSS / SCSS</span>
+        <span class="s-tag">JavaScript</span><span class="s-tag">Framer</span>
+        <span class="s-tag">UI Design</span><span class="s-tag">Prototyping</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-top">
+    <div>
+      <span class="label reveal" style="font-size:10px;text-transform:uppercase;letter-spacing:0.5em;color:var(--violet-bright);font-weight:700;display:block;margin-bottom:16px;">Selected Work</span>
+      <h2 class="reveal d1">What I've<br/><em>built.</em></h2>
+    </div>
+    <a href="#contact" class="btn-ghost reveal">Start a Project →</a>
+  </div>
+  <div class="grid-projects">
+    <div class="p-card wide reveal">
+      <div class="p-img">
+        <div class="p-img-bg"></div>
+        <div class="p-img-text">Omnicraft</div>
+        <div class="p-pill">View Project ↗</div>
+      </div>
+      <div class="p-info">
+        <div class="p-cats">
+          <span class="p-cat violet">React</span>
+          <span class="p-cat violet">GSAP</span>
+          <span class="p-cat pink">UI/UX</span>
+          <span class="p-cat year">2024</span>
+        </div>
+        <h3 class="p-title">Omnicraft Studio</h3>
+        <p class="p-desc">Premium agency portfolio with animated fire canvas, glass morphism, and cinematic transitions.</p>
+      </div>
+    </div>
+    <div class="p-card tall reveal d1">
+      <div class="p-img" style="background: linear-gradient(135deg, #090515 0%, #150a20 100%);">
+        <div class="p-img-bg"></div>
+        <div class="p-img-text">Project</div>
+        <div class="p-pill">View Project ↗</div>
+      </div>
+      <div class="p-info">
+        <div class="p-cats">
+          <span class="p-cat pink">UI/UX</span>
+          <span class="p-cat year">2024</span>
+        </div>
+        <h3 class="p-title">Your Project 2</h3>
+        <p class="p-desc">Replace with your real project.</p>
+      </div>
+    </div>
+    <div class="p-card full reveal">
+      <div class="p-img" style="background: linear-gradient(135deg, #06030f 0%, #130820 100%); aspect-ratio: 21/7;">
+        <div class="p-img-bg"></div>
+        <div class="p-img-text">Project Three</div>
+        <div class="p-pill">View Project ↗</div>
+      </div>
+      <div class="p-info">
+        <div class="p-cats">
+          <span class="p-cat violet">React</span>
+          <span class="p-cat pink">Design</span>
+          <span class="p-cat year">2023</span>
+        </div>
+        <h3 class="p-title">Your Project 3</h3>
+        <p class="p-desc">Replace with your real project description. What was the goal and outcome?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <div class="services-head">
+      <span class="label reveal" style="display:block;font-size:10px;text-transform:uppercase;letter-spacing:0.5em;color:var(--violet-bright);font-weight:700;margin-bottom:20px;">What I Offer</span>
+      <h2 class="reveal d1">My <em>services.</em></h2>
+    </div>
+    <div class="svc-list">
+      <div class="svc-item reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-body">
+          <div class="svc-name">Frontend Development</div>
+          <p class="svc-desc">Pixel-perfect React sites with silky animations, fast load times, and code that scales.</p>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="svc-item reveal d1">
+        <div class="svc-num">02</div>
+        <div class="svc-body">
+          <div class="svc-name">UI / UX Design</div>
+          <p class="svc-desc">Premium Figma designs that convert — from wireframes to production-ready prototypes.</p>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+      <div class="svc-item reveal d2">
+        <div class="svc-num">03</div>
+        <div class="svc-body">
+          <div class="svc-name">Web Animation</div>
+          <p class="svc-desc">GSAP-powered scroll animations and micro-interactions that bring interfaces to life.</p>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-glow2"></div>
+  <div class="contact-inner">
+    <span class="label reveal">Get In Touch</span>
+    <h2 class="reveal d1">Let's build<br/><em>together.</em></h2>
+    <p class="contact-sub reveal d2">Available for freelance projects, collabs, and exciting opportunities. I reply within 24 hours.</p>
+    <a href="mailto:your@email.com" class="contact-email reveal d3">your@email.com</a>
+    <div class="socials reveal d4">
+      <a href="#" class="soc-btn">Instagram ↗</a>
+      <a href="#" class="soc-btn">LinkedIn ↗</a>
+      <a href="#" class="soc-btn">GitHub ↗</a>
+      <a href="#" class="soc-btn">Dribbble ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="f-logo">Parth<em>.</em></a>
+  <p class="f-copy">© 2025 Parth. All rights reserved.</p>
+  <a href="https://omnicraft.studio" class="f-studio">Omnicraft Studio ↗</a>
+</footer>
+
+<script>
+/* ──────────────────────────────────────
+   SHADER GRADIENT (WebGL waterPlane)
+   Colors: #5606ff · #fe8989 · #000000
+   Params match your ShaderGradient config
+────────────────────────────────────── */
+(function(){
+  const canvas = document.getElementById('shader-canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+
+  function resize(){
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0,0,canvas.width,canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const VS = `
+    attribute vec2 a_pos;
+    void main(){ gl_Position = vec4(a_pos,0,1); }
+  `;
+
+  const FS = `
+    precision highp float;
+    uniform float u_time;
+    uniform vec2  u_res;
+
+    vec3 c1 = vec3(0.337, 0.024, 1.0);   // #5606ff
+    vec3 c2 = vec3(0.996, 0.537, 0.537); // #fe8989
+    vec3 c3 = vec3(0.0,   0.0,   0.0);   // #000000
+
+    float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5); }
+
+    float noise(vec2 p){
+      vec2 i = floor(p);
+      vec2 f = fract(p);
+      f = f*f*(3.0-2.0*f);
+      float a = hash(i);
+      float b = hash(i+vec2(1,0));
+      float c = hash(i+vec2(0,1));
+      float d = hash(i+vec2(1,1));
+      return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);
+    }
+
+    float fbm(vec2 p){
+      float v = 0.0; float a = 0.5;
+      for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.1; a*=0.5; }
+      return v;
+    }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / u_res;
+      // match rotation 235deg + positionX -0.5
+      uv.x -= 0.5;
+      float angle = 235.0 * 3.14159 / 180.0;
+      vec2 ruv = vec2(
+        uv.x*cos(angle) - uv.y*sin(angle),
+        uv.x*sin(angle) + uv.y*cos(angle)
+      );
+
+      float t  = u_time * 0.1; // uSpeed 0.1
+      float density = 1.1;
+      float strength = 2.4;
+      float freq = 5.5;
+
+      // waterPlane: layered fbm waves
+      vec2 p = ruv * freq * density + vec2(t * 0.3, t * 0.15);
+      float wave1 = fbm(p);
+      float wave2 = fbm(p * 1.3 + vec2(1.7, 0.9) + t * 0.12);
+      float wave3 = fbm(p * 0.7 - vec2(0.5, 1.3) - t * 0.08);
+
+      float f = (wave1 * 0.5 + wave2 * 0.3 + wave3 * 0.2) * strength;
+      f = clamp(f * 0.42, 0.0, 1.0);
+
+      // three-color blend
+      vec3 col;
+      if(f < 0.5){
+        col = mix(c3, c1, f * 2.0);
+      } else {
+        col = mix(c1, c2, (f - 0.5) * 2.0);
+      }
+
+      // brightness 1.1
+      col *= 1.1;
+
+      // vignette (dark edges → bg color)
+      float vign = 1.0 - smoothstep(0.4, 1.2, length(uv));
+      col = mix(c3, col, vign * 0.85);
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function compile(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s); return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog,'a_pos');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uTime = gl.getUniformLocation(prog,'u_time');
+  const uRes  = gl.getUniformLocation(prog,'u_res');
+
+  let start = performance.now();
+  function draw(){
+    const t = (performance.now() - start) / 1000;
+    gl.uniform1f(uTime, t + 0.2); // uTime offset 0.2
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── CURSOR ── */
+const cd = document.getElementById('cd');
+const cr = document.getElementById('cr');
+let mx=0,my=0;
+document.addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  cd.style.left=mx+'px'; cd.style.top=my+'px';
+  cr.style.left=mx+'px'; cr.style.top=my+'px';
+});
+document.querySelectorAll('a,button,.p-card,.s-tag,.svc-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cd.classList.add('big'); cr.classList.add('big'); });
+  el.addEventListener('mouseleave',()=>{ cd.classList.remove('big'); cr.classList.remove('big'); });
+});
+
+/* ── PROGRESS ── */
+const prog = document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  prog.style.width = (window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+});
+
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled', window.scrollY>60); });
+
+/* ── MARQUEE ── */
+const items = ['Frontend Dev','UI/UX Design','React','GSAP','Figma','Motion','Web Animation','Interaction Design'];
+const track = document.getElementById('mtrack');
+[...items,...items,...items,...items].forEach(t=>{
+  const d = document.createElement('div');
+  d.className='marquee-item';
+  d.innerHTML=`${t}<span>✦</span>`;
+  track.appendChild(d);
+});
+
+/* ── REVEAL ── */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── STAT COUNTER ── */
+const cobs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el = e.target.querySelector('.snum[data-target]');
+    if(!el) return;
+    const target = +el.dataset.target;
+    const suffix = el.dataset.target==='100' ? '%' : '+';
+    let cur=0; const step=target/60;
+    const t = setInterval(()=>{
+      cur=Math.min(cur+step,target);
+      el.textContent=Math.floor(cur)+suffix;
+      if(cur>=target) clearInterval(t);
+    },22);
+    el.parentElement.classList.add('visible');
+    cobs.unobserve(e.target);
+  });
+},{threshold:0.4});
+document.querySelectorAll('.stat-cell').forEach(el=>cobs.observe(el));
+</script>
+</body>
+</html>
