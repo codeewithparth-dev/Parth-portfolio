@@ -44,12 +44,12 @@ const Work = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-[16px] mb-[60px] md:mb-[80px]"
+          className="flex items-center [16px] [60px] md:[80px]"
         >
-          <span className="text-[var(--lime)] text-[12px] tracking-[4px] uppercase font-display font-bold">
+          <span className="text-(--lime)] text-[12px] tracking-[4px] uppercase font-display font-bold">
             02 / Work
           </span>
-          <div className="flex-1 h-[1px] bg-[var(--gray-2)]" />
+          <div className="flex-1 [1px] bg-(--gray-2)]" />
         </motion.div>
 
         <motion.h2
@@ -93,19 +93,20 @@ const Work = () => {
 
               {/* Info */}
               <div>
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-[12px] md:gap-[16px] mb-[12px] md:mb-[8px]">
-                  <h3 className="font-display text-[20px] md:text-[24px] font-extrabold text-[var(--cream)] tracking-[-0.5px]">
+                <div className="flex flex-col md:flex-row items-start md:items-center [12px] md:[16px] mb:[12px] md:[8px]">
+                  <h3 className="font-display text-[20px] md:text-[24px] font-extrabold text-(--cream)] tracking-[-0.5px]">
                     {project.title}
                   </h3>
                   <span style={{
                     fontSize: '11px',
                     letterSpacing: '2px',
-                    color: project.status === 'Building' ? 'var(--lime)' : 'var(--gray)',
+                    color: 'var(--lime)',
                     textTransform: 'uppercase',
                     padding: '3px 10px',
-                    border: `1px solid ${project.status === 'Building' ? 'rgba(200,241,53,0.3)' : 'var(--gray-2)'}`,
+                    border: '1px solid rgba(200,241,53,0.3)',
                     borderRadius: '20px',
                     fontFamily: 'var(--font-display)',
+                    boxShadow: '0 0 8px rgba(200,241,53,0.4), 0 0 20px rgba(200,241,53,0.15)',
                   }}>
                     {project.status}
                   </span>
