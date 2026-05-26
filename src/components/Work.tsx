@@ -15,11 +15,11 @@ const projects = [
   },
   {
     number: '02',
-    title: 'Next Project',
+    title: 'Flourish Beauty Parlor',
     subtitle: 'Coming Soon',
     description: 'Something new is being crafted. Stay tuned.',
     tags: [],
-    status: 'Soon',
+    status: 'Completed',
     link: '#',
     featured: false,
   },
