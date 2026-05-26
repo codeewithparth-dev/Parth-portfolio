@@ -16,12 +16,12 @@ const projects = [
   {
     number: '02',
     title: 'Flourish Beauty Parlor',
-    subtitle: 'Coming Soon',
-    description: 'Something new is being crafted. Stay tuned.',
-    tags: [],
+    subtitle: 'Beauty Parlor Website',
+    description: 'A beauty parlor website built for Flourish — elegant design, smooth animations, and a premium feel that wins clients.',
+    tags: ['React', 'Vite', 'Tailwind', 'Framer Motion'],
     status: 'Completed',
-    link: '#',
-    featured: false,
+    link: 'https://flourish-beauty-parlor.vercel.app/',
+    featured: true,
   },
 ]
 
