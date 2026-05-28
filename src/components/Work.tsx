@@ -30,7 +30,7 @@ const Work = () => {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="work" ref={ref} className="relative bg-[var(--black-2)] py-[100px] md:py-[140px] overflow-hidden">
+    <section id="work" ref={ref} className="relative bg-(--black-2) py-25 md:py-35 overflow-hidden">
       <AnimatedBlob 
         className="hidden md:block"
         style={{ top: '10%', right: '-5%', width: '300px', height: '300px', zIndex: 0 }}
@@ -46,10 +46,10 @@ const Work = () => {
           transition={{ duration: 0.6 }}
           className="flex items-center [16px] [60px] md:[80px]"
         >
-          <span className="text-(--lime)] text-[12px] tracking-[4px] uppercase font-display font-bold">
+          <span className="text-(--lime) text-[12px] tracking-[4px] uppercase font-display font-bold">
             02 / Work
           </span>
-          <div className="flex-1 [1px] bg-(--gray-2)]" />
+          <div className="flex-1 [1px] bg-(--gray-2)" />
         </motion.div>
 
         <motion.h2
@@ -64,12 +64,12 @@ const Work = () => {
             color: 'var(--cream)',
             marginBottom: '40px',
           }}
-          className="md:mb-[64px]"
+          className="md:mb-16"
         >
           Selected <span style={{ WebkitTextStroke: '2px var(--lime)', color: 'transparent' }}>Work</span>
         </motion.h2>
 
-        <div className="flex flex-col gap-[16px] md:gap-[2px]">
+        <div className="flex flex-col gap-4 md:gap-0.5">
           {projects.map((project, i) => (
             <motion.a
               key={project.number}
@@ -78,7 +78,7 @@ const Work = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               style={{ padding: '24px' }}
-            className="flex flex-col md:grid md:grid-cols-[60px_1fr_auto] items-start md:items-center gap-[16px] md:gap-[24px] p-[24px] md:p-[40px_36px] border border-[var(--gray-2)] rounded-[16px] bg-[var(--black)] no-underline transition-all duration-400 mb-[16px] cursor-none relative overflow-hidden group hover:bg-[rgba(200,241,53,0.02)] hover:border-[rgba(200,241,53,0.4)]">
+            className="flex flex-col md:grid md:grid-cols-[60px_1fr_auto] items-start md:items-center gap-4 md:gap-6 p-6 md:p-[40px_36px] border border-(--gray-2) rounded-2xl bg-(--black) no-underline transition-all duration-400 mb-4 cursor-none relative overflow-hidden group hover:bg-[rgba(200,241,53,0.02)] hover:border-[rgba(200,241,53,0.4)]">
               
               {/* Number */}
               <span style={{
@@ -94,7 +94,7 @@ const Work = () => {
               {/* Info */}
               <div>
                 <div className="flex flex-col md:flex-row items-start md:items-center [12px] md:[16px] mb:[12px] md:[8px]">
-                  <h3 className="font-display text-[20px] md:text-[24px] font-extrabold text-(--cream)] tracking-[-0.5px]">
+                  <h3 className="font-display text-[20px] md:text-[24px] font-extrabold text-(--cream) tracking-[-0.5px]">
                     {project.title}
                   </h3>
                   <span style={{
@@ -135,7 +135,7 @@ const Work = () => {
 
               {/* Arrow */}
               <motion.span
-                className="hidden md:block text-[24px] text-[var(--lime)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="hidden md:block text-[24px] text-(--lime) opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               >
                 →
               </motion.span>

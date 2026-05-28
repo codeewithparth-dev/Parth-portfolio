@@ -50,7 +50,7 @@ const About = () => {
   const inView = useInView(ref, { once: true, margin: '-10px' })
 
   return (
-    <section id="about" ref={ref} className="relative bg-[var(--black)] py-20 md:py-48 overflow-hidden">
+    <section id="about" ref={ref} className="relative bg-(--black) py-20 md:py-48 overflow-hidden">
 
       <AnimatedBlob
         className="hidden md:block"
@@ -72,17 +72,17 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-4"
             >
-              <span className="text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold">
+              <span className="text-(--lime) text-xs tracking-[4px] uppercase font-display font-bold">
                 01 / About
               </span>
-              <div className="flex-1 h-[1px] bg-[var(--gray-2)]" />
+              <div className="flex-1 h-px bg-(--gray-2)" />
             </motion.div>
 
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-1px] md:tracking-[-1.5px] text-[var(--cream)]"
+              className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-1px] md:tracking-[-1.5px] text-(--cream)"
             >
               18 years old. Self-taught.<br />
               <span className="inline-block mt-2" style={{ WebkitTextStroke: '2px var(--lime)', color: 'transparent' }}>
@@ -94,7 +94,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[var(--cream-muted)] text-base md:text-lg leading-relaxed font-light w-full md:max-w-[600px]"
+              className="text-(--cream-muted) text-base md:text-lg leading-relaxed font-light w-full md:max-w-150"
             >
               I'm Parth Kishan — a Frontend Developer & UI Designer from Karachi, Pakistan. Two years ago I started with a free course and YouTube tutorials. No degree, no bootcamp, just pure curiosity and a laptop open at 2am.
             </motion.p>
@@ -103,7 +103,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-[var(--cream-muted)] text-base md:text-lg leading-relaxed font-light w-full md:max-w-[600px]"
+              className="text-(--cream-muted) text-base md:text-lg leading-relaxed font-light w-full md:max-w-150"
             >
               What started as watching tutorials turned into building real websites for real clients. I design AND build — which means you get one focused person instead of two separate invoices. That's not a feature, that's the whole point.
             </motion.p>
@@ -116,27 +116,27 @@ const About = () => {
               initial={{ opacity: 0, x: 0 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-[var(--black-2)] border-l-[3px] border-[var(--lime)] w-full ml-0 overflow-hidden"
+              className="bg-(--black-2) border-l-[3px] border-(--lime) w-full ml-0 overflow-hidden"
               style={{ padding: '20px 20px 20px 32px' }}            >
               <div className="flex flex-col gap-5 md:gap-7">
                 {[
                   { label: "Based in", value: "Karachi, Pakistan 🇵🇰" },
                   { label: "Started", value: "2 years ago" },
                   { label: "Approach", value: "Design + Code" },
-                  { label: "Status", value: <span className="flex items-center justify-end gap-2"><span className="w-2 h-2 rounded-full bg-[var(--lime)] animate-pulse shadow-[0_0_10px_rgba(200,241,53,0.6)]" /> Available</span> },
+                  { label: "Status", value: <span className="flex items-center justify-end gap-2"><span className="w-2 h-2 rounded-full bg-(--lime) animate-pulse shadow-[0_0_10px_rgba(200,241,53,0.6)]" /> Available</span> },
                   {
                     label: "Agency",
                     value: (
-                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--lime)] border border-[var(--lime)] text-[var(--black)] text-xs tracking-wider uppercase font-bold transition-all duration-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--black)] animate-pulse" />
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-(--lime) border border-(--lime) text-(--black) text-xs tracking-wider uppercase font-bold transition-all duration-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-(--black) animate-pulse" />
                         Omnicraft
                       </span>
                     )
                   },
                 ].map((row, idx, arr) => (
-                  <div key={row.label} className={`flex flex-row justify-between items-center gap-4 py-4 md:py-5 ${idx !== arr.length - 1 ? 'border-b border-[var(--gray-2)]' : ''}`}>
-                    <span className="text-[10px] md:text-xs uppercase tracking-wider text-[var(--cream-muted)] font-semibold flex-shrink-0">{row.label}</span>
-                    <span className="text-sm md:text-base text-[var(--cream)] font-medium text-right flex items-center justify-end min-h-[24px] min-w-0 max-w-[60%]">{row.value}</span>
+                  <div key={row.label} className={`flex flex-row justify-between items-center gap-4 py-4 md:py-5 ${idx !== arr.length - 1 ? 'border-b border-(--gray-2)' : ''}`}>
+                    <span className="text-[10px] md:text-xs uppercase tracking-wider text-(--cream-muted) font-semibold shrink-0">{row.label}</span>
+                    <span className="text-sm md:text-base text-(--cream) font-medium text-right flex items-center justify-end min-h-6 min-w-0 max-w-[60%]">{row.value}</span>
                   </div>
                 ))}
               </div>
@@ -148,7 +148,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="text-xs tracking-[3px] text-[var(--cream-muted)] uppercase mb-6 md:mb-8 font-display font-semibold"
+                className="text-xs tracking-[3px] text-(--cream-muted) uppercase mb-6 md:mb-8 font-display font-semibold"
               >
                 Skills & Tools
               </motion.h3>
@@ -163,17 +163,17 @@ const About = () => {
                     className="w-full"
                   >
                     <div className="flex justify-between mb-2">
-                      <span className="text-sm text-[var(--cream)] font-medium">{skill.name}</span>
-                      <span className="text-xs text-[var(--lime)] font-display font-bold">{skill.level}%</span>
+                      <span className="text-sm text-(--cream) font-medium">{skill.name}</span>
+                      <span className="text-xs text-(--lime) font-display font-bold">{skill.level}%</span>
                     </div>
                     {/* Track: visible 4px height, brighter bg */}
-                    <div className="h-[4px] bg-[#2a2a2a] rounded-full overflow-hidden w-full">
+                    <div className="h-1 bg-[#2a2a2a] rounded-full overflow-hidden w-full">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={inView ? { width: `${skill.level}%` } : {}}
                         transition={{ duration: 1, delay: 0.8 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                         style={{ boxShadow: '0 0 8px rgba(200,241,53,0.5)' }}
-                        className="h-full bg-[var(--lime)] rounded-full"
+                        className="h-full bg-(--lime) rounded-full"
                       />
                     </div>
                   </motion.div>
@@ -191,10 +191,10 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="md:mb-20 flex flex-col justify-center items-center"
           >
-            <span className="inline-block text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold mb-4 md:mb-6">
+            <span className="inline-block text-(--lime) text-xs tracking-[4px] uppercase font-display font-bold mb-4 md:mb-6">
               Why me?
             </span>
-            <h2 className="font-display text-2xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-[-1px] md:tracking-[-1.5px] text-[var(--cream)]">
+            <h2 className="font-display text-2xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-[-1px] md:tracking-[-1.5px] text-(--cream)">
               One person.<br />
               <span style={{ WebkitTextStroke: '1.5px var(--lime)', color: 'transparent' }}>
                 Full package.
@@ -209,15 +209,15 @@ const About = () => {
                 initial={{ opacity: 0, y: 40 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 + (i * 0.15) }}
-                className="relative bg-[var(--black-2)] p-6 sm:p-7 md:p-12 overflow-hidden group border border-transparent hover:border-[rgba(200,241,53,0.5)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(200,241,53,0.05)]"
+                className="relative bg-(--black-2) p-6 sm:p-7 md:p-12 overflow-hidden group border border-transparent hover:border-[rgba(200,241,53,0.5)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(200,241,53,0.05)]"
               >
-                <span className="absolute -top-6 -right-2 text-7xl sm:text-9xl font-display font-extrabold text-transparent opacity-5 transition-colors duration-300 group-hover:text-[var(--lime)] group-hover:opacity-10" style={{ WebkitTextStroke: '1.5px var(--cream-muted)', pointerEvents: 'none' }}>
+                <span className="absolute -top-6 -right-2 text-7xl sm:text-9xl font-display font-extrabold text-transparent opacity-5 transition-colors duration-300 group-hover:text-(--lime) group-hover:opacity-10" style={{ WebkitTextStroke: '1.5px var(--cream-muted)', pointerEvents: 'none' }}>
                   {card.id}
                 </span>
-                <h3 className="relative z-10 font-display text-lg md:text-2xl font-bold text-[var(--cream)] mb-2 md:mb-4">
+                <h3 className="relative z-10 font-display text-lg md:text-2xl font-bold text-(--cream) mb-2 md:mb-4">
                   {card.title}
                 </h3>
-                <p className="relative z-10 text-[var(--cream-muted)] text-[13px] md:text-[15px] leading-relaxed font-light">
+                <p className="relative z-10 text-(--cream-muted) text-[13px] md:text-[15px] leading-relaxed font-light">
                   {card.desc}
                 </p>
               </motion.div>
@@ -241,22 +241,22 @@ const About = () => {
             className="flex gap-5 md:gap-8 relative z-10 w-full"
           >
             {/* Timeline marker */}
-            <div className="w-[3px] bg-[var(--lime)] flex-shrink-0" />
+            <div className="w-0.75 bg-(--lime) shrink-0" />
 
             <div className="flex flex-col py-2">
-              <span className="flex items-center gap-3 md:gap-4 text-[var(--lime)] text-xs tracking-[4px] uppercase font-display font-bold mb-8 md:mb-6">
+              <span className="flex items-center gap-3 md:gap-4 text-(--lime) text-xs tracking-[4px] uppercase font-display font-bold mb-8 md:mb-6">
                 <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center border border-[rgba(200,241,53,0.3)] shadow-[0_0_15px_rgba(200,241,53,0.2)]">
-                  <div className="absolute w-2 h-2 rounded-full bg-[var(--lime)] animate-[ping_2s_ease-in-out_infinite]" />
-                  <div className="w-2 h-2 rounded-full bg-[var(--lime)]" />
+                  <div className="absolute w-2 h-2 rounded-full bg-(--lime) animate-[ping_2s_ease-in-out_infinite]" />
+                  <div className="w-2 h-2 rounded-full bg-(--lime)" />
                 </div>
                 OMNICRAFT
               </span>
 
-              <h2 className="font-display italic text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-0.5px] md:tracking-[-1px] text-[var(--cream)] mb-6 md:mb-8 break-words">
+              <h2 className="font-display italic text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-[-0.5px] md:tracking-[-1px] text-(--cream) mb-6 md:mb-8 wrap-break-word">
                 A worldwide creative agency.
               </h2>
 
-              <p className="text-[var(--cream-muted)] text-base md:text-lg leading-relaxed font-light w-full md:max-w-[560px] mb-8 md:mb-12">
+              <p className="text-(--cream-muted) text-base md:text-lg leading-relaxed font-light w-full md:max-w-140 mb-8 md:mb-12">
                 Omnicraft isn't just a project — it's a vision. A team of designers, developers, motion artists, and storytellers from Karachi, building bold digital experiences for brands across the globe. We're just getting started.
               </p>
 
@@ -268,7 +268,7 @@ const About = () => {
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.6 + (i * 0.1) }}
                     style={{ padding: '6px 14px' }}
-                    className="bg-[rgba(200,241,53,0.08)] border-[1.5px] border-[var(--lime)] text-[var(--lime)] text-[11px] font-semibold rounded-full tracking-wider uppercase transition-all duration-300 hover:bg-[rgba(200,241,53,0.15)] hover:shadow-[0_0_12px_rgba(200,241,53,0.2)]">
+                    className="bg-[rgba(200,241,53,0.08)] border-[1.5px] border-(--lime) text-(--lime) text-[11px] font-semibold rounded-full tracking-wider uppercase transition-all duration-300 hover:bg-[rgba(200,241,53,0.15)] hover:shadow-[0_0_12px_rgba(200,241,53,0.2)]">
                     {role}
                   </motion.span>
                 ))}
@@ -285,7 +285,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-display text-3xl md:text-5xl font-bold text-[var(--cream)] mb-12 md:mb-12"
+            className="font-display text-3xl md:text-5xl font-bold text-(--cream) mb-12 md:mb-12"
           >
             What I Do
           </motion.h3>
@@ -298,19 +298,19 @@ const About = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
-                  className="relative p-8 md:p-10 rounded-2xl bg-[var(--black-2)] border border-[var(--gray-2)] overflow-hidden group transition-colors duration-300 hover:border-[var(--lime)]"
+                  className="relative p-8 md:p-10 rounded-2xl bg-(--black-2) border border-(--gray-2) overflow-hidden group transition-colors duration-300 hover:border-(--lime)"
                 >
-                  <span className="absolute -top-4 -right-2 text-8xl font-display font-extrabold text-transparent opacity-10 transition-colors group-hover:text-[var(--lime)]" style={{ WebkitTextStroke: '1px var(--cream-muted)', pointerEvents: 'none' }}>
+                  <span className="absolute -top-4 -right-2 text-8xl font-display font-extrabold text-transparent opacity-10 transition-colors group-hover:text-(--lime)" style={{ WebkitTextStroke: '1px var(--cream-muted)', pointerEvents: 'none' }}>
                     {service.id}
                   </span>
 
-                  <div className="relative z-10 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center text-[var(--lime)] mb-5 md:mb-6">
+                  <div className="relative z-10 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[rgba(200,241,53,0.1)] flex items-center justify-center text-(--lime) mb-5 md:mb-6">
                     <Icon size={22} />
                   </div>
-                  <h4 className="relative z-10 font-display text-lg md:text-xl font-bold text-[var(--cream)] mb-2 md:mb-3">
+                  <h4 className="relative z-10 font-display text-lg md:text-xl font-bold text-(--cream) mb-2 md:mb-3">
                     {service.title}
                   </h4>
-                  <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
+                  <p className="text-(--cream-muted) text-sm leading-relaxed">
                     {service.desc}
                   </p>
                 </motion.div>
@@ -327,12 +327,12 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="font-display text-5xl font-bold text-[var(--cream)] mb-16"
+              className="font-display text-5xl font-bold text-(--cream) mb-16"
             >
               My Process
             </motion.h3>
             <div className="relative">
-              <div className="absolute left-0 top-6 w-full h-[2px] border-t-2 border-dotted border-[var(--lime)] opacity-30 z-0" />
+              <div className="absolute left-0 top-6 w-full h-0.5 border-t-2 border-dotted border-(--lime) opacity-30 z-0" />
               <div className="flex flex-row justify-between gap-4 md:gap-8 relative z-10">
                 {processSteps.map((step, i) => (
                   <div key={`step-wrapper-${step.id}`} className="flex items-center gap-4 md:gap-8 flex-1" style={{ position: 'relative' }}>
@@ -343,14 +343,14 @@ const About = () => {
                       transition={{ duration: 0.6, delay: 0.5 + i * 0.15 }}
                       className="flex flex-col items-center text-center flex-1 min-w-0"
                     >
-                      <div className="w-12 h-12 rounded-full bg-[var(--black)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg mb-6 shadow-[0_0_15px_rgba(200,241,53,0.2)]">
+                      <div className="w-12 h-12 rounded-full bg-(--black) border-2 border-(--lime) items-center justify-center font-display font-bold text-(--lime) text-lg mb-6 shadow-[0_0_15px_rgba(200,241,53,0.2)]">
                         {step.id}
                       </div>
                       <div>
-                        <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-2">
+                        <h4 className="font-display text-lg font-bold text-(--cream) mb-2">
                           {step.title}
                         </h4>
-                        <p className="text-[var(--cream-muted)] text-[13px] leading-relaxed">
+                        <p className="text-(--cream-muted) text-[13px] leading-relaxed">
                           {step.desc}
                         </p>
                       </div>
@@ -360,7 +360,7 @@ const About = () => {
                         initial={{ opacity: 0 }}
                         animate={inView ? { opacity: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.5 + i * 0.15 }}
-                        className="hidden md:flex items-center justify-center text-[var(--lime)] text-xl font-bold flex-shrink-0"
+                        className="hidden md:flex items-center justify-center text-(--lime) text-xl font-bold shrink-0"
                       >
                         →
                       </motion.div>
@@ -377,7 +377,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="font-display text-3xl font-bold text-[var(--cream)]"
+              className="font-display text-3xl font-bold text-(--cream)"
             >
               My Process
             </motion.h3>
@@ -385,12 +385,12 @@ const About = () => {
               {processSteps.map((step, i) => (
                 <div key={step.id} className="flex gap-5">
                   {/* Left: circle + connecting line */}
-                  <div className="flex flex-col items-center flex-shrink-0 w-12">
+                  <div className="flex flex-col items-center shrink-0 w-12">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.4, delay: 0.5 + i * 0.12 }}
-                      className="w-12 h-12 rounded-full bg-[var(--black-2)] border-2 border-[var(--lime)] flex items-center justify-center font-display font-bold text-[var(--lime)] text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]"
+                      className="w-12 h-12 rounded-full bg-(--black-2) border-2 border-(--lime) flex items-center justify-center font-display font-bold text-(--lime) text-lg shadow-[0_0_12px_rgba(200,241,53,0.15)]"
                     >
                       {step.id}
                     </motion.div>
@@ -408,10 +408,10 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
                     className="pt-2 pb-6"
                   >
-                    <h4 className="font-display text-lg font-bold text-[var(--cream)] mb-1">
+                    <h4 className="font-display text-lg font-bold text-(--cream) mb-1">
                       {step.title}
                     </h4>
-                    <p className="text-[var(--cream-muted)] text-sm leading-relaxed">
+                    <p className="text-(--cream-muted) text-sm leading-relaxed">
                       {step.desc}
                     </p>
                   </motion.div>
